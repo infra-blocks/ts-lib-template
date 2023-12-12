@@ -1,7 +1,7 @@
 name: NPM publish
 
-permissions:
-  pull-requests: write
+#permissions:
+#  pull-requests: write
 
 on:
   pull_request:
