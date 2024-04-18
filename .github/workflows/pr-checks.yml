@@ -1,0 +1,45 @@
+name: PR Checks
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - labeled
+      - unlabeled
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-has-semver-label:
+    permissions:
+      pull-requests: write
+    uses: infrastructure-blocks/check-has-semver-label-workflow/.github/workflows/workflow.yml@v1
+  check-has-changelog-version-matching-semver-increment:
+    needs:
+      - check-has-semver-label
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: infrastructure-blocks/check-has-changelog-version-matching-semver-increment-workflow/.github/workflows/workflow.yml@v1
+    with:
+      semver-increment: ${{ needs.check-has-semver-label.outputs.matched-label }}
+      package-type: npm
+      skip: ${{ needs.check-has-semver-label.outputs.matched-label == 'no version' }}
+  npm-publish-prerelease:
+    needs:
+      - check-has-semver-label
+    uses: infrastructure-blocks/npm-publish-from-semver-increment-workflow/.github/workflows/workflow.yml@feature/first-version
+    permissions:
+      contents: write
+      pull-requests: write
+    with:
+      semver-increment: ${{ needs.check-has-semver-label.outputs.matched-label }}
+      prerelease: true
+      skip: ${{ needs.check-has-semver-label.outputs.matched-label == 'no version' }}
+    secrets:
+      github-token: ${{ github.token }}
+      npm-token: ${{ secrets.NPM_PUBLISH_TOKEN }}
