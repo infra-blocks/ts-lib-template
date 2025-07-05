@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "skipLibCheck": true,
-    "module": "node16",
+    "module": "nodenext",
     "outDir": "./lib/compile",
     "strict": true,
     "target": "esnext",
