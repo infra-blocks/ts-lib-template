@@ -20,6 +20,7 @@
     "require": "./lib/cjs/index.js",
     "default": "./lib/esm/index.js"
   },
+  "main": "./lib/cjs/index.js",
   "files": [
     "lib/**/*.{js,cjs,mjs,json,d.ts,map}"
   ],
