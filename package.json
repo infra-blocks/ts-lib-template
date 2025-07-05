@@ -32,10 +32,10 @@
     "fix": "biome check --write",
     "lint": "biome ci",
     "prepack": "npm run build",
-    "test": "npm run test:unit",
+    "test": "npm run test:unit && npm run test:integration",
     "test:coverage": "c8 npm run test",
     "test:coverage:lcov": "c8 --reporter=lcov npm run test",
-    "test:integration": "mocha --config test/integration/.mocharc.js 'test/integration/**/*.spec.ts'",
+    "test:integration": "mocha --config test/integration/.mocharc.cjs 'test/integration/**/*.spec.ts'",
     "test:unit": "mocha --config test/unit/.mocharc.cjs 'test/unit/**/*.spec.ts'"
   },
   "devDependencies": {
@@ -46,7 +46,7 @@
     "c8": "^8.0.0",
     "lefthook": "^1.11.16",
     "mocha": "^10.2.0",
-    "ts-node": "^10.9.1",
+    "tsx": "^4.20.3",
     "typescript": "^5.0.4"
   },
   "engines": {
