@@ -26,7 +26,9 @@
   ],
   "scripts": {
     "prebuild": "npm run clean",
-    "build": "tsc -b tsconfig.build.esm.json tsconfig.build.cjs.json",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -b tsconfig.build.esm.json",
+    "build:cjs": "tsc -b tsconfig.build.cjs.json",
     "postbuild": "scripts/post-build.sh",
     "clean": "rm -rf lib && rm -f infra-blocks-*.tgz",
     "compile": "tsc",
