@@ -16,3 +16,4 @@ Follow these steps after instantiating the template:
 - Describe the package and its usage in this readme.
 - Prepare the [changelog](CHANGELOG.md) for the first version of the module that will be released.
 - Edit the `.npmrc` file if you wish to change the defaults. Specifically, if you wish to make your package private.
+- Run `nvm i && npm i` to update the `package-lock.json` file with your latest modifications of the `package.json`.
