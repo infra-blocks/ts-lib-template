@@ -1,4 +1,4 @@
-import test, { type TestContextHookFn } from "node:test";
+import { after, suite, test } from "node:test";
 import { expect } from "@infra-blocks/test";
 
 function setUp() {
@@ -6,19 +6,19 @@ function setUp() {
   return Promise.resolve(undefined);
 }
 
-function tearDown(): TestContextHookFn {
+function tearDown() {
   return () => {
     console.log("tearing down");
   };
 }
 
-test("suite", async (t) => {
+suite("suite", async () => {
   await setUp();
-  t.after(tearDown());
+  after(tearDown());
 
-  await t.test("dummy smoke tests", async (t) => {
-    await t.test("should work yo", () => {
-      expect(true).to.be.true;
+  suite("dummy smoke tests", () => {
+    test("should work yo", async () => {
+      await expect(Promise.resolve(true)).to.eventually.be.true;
     });
   });
 });
