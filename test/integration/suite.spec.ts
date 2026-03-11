@@ -1,5 +1,5 @@
 import { after, suite, test } from "node:test";
-import { expect } from "@infra-blocks/test";
+import { assert } from "@infra-blocks/test";
 
 function setUp() {
   console.log("setting up");
@@ -18,7 +18,7 @@ suite("suite", async () => {
 
   suite("dummy smoke tests", () => {
     test("should work yo", async () => {
-      await expect(Promise.resolve(true)).to.eventually.be.true;
+      assert(await Promise.resolve(true));
     });
   });
 });
