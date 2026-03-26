@@ -1,0 +1,5 @@
+[[language]]
+name = "typescript"
+formatter = { command = "biome", args = ["format", "--stdin-file-path=%{buffer_name}"] }
+auto-format = true
+language-servers = [ "typescript-language-server", "biome-lsp-proxy" ]
