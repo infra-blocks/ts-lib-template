@@ -1,2 +1,18 @@
 [tools]
 "npm:@biomejs/biome" = "2.4.9"
+
+[tasks.ci]
+description = "Runs CI tasks in parallel."
+run = [{ tasks = ["lint", "compile", "test:coverage:lcov"] }]
+
+[tasks.compile]
+description = "Compiles project files."
+run = "npm run compile"
+
+[tasks.lint]
+description = "Lint project files."
+run = "npm run lint"
+
+[tasks."test:coverage:lcov"]
+description = "Runs all tests and cumulate code coverage in lcov format."
+run = "npm run test:coverage:lcov"

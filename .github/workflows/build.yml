@@ -21,10 +21,7 @@ jobs:
           cache: npm
       - uses: jdx/mise-action@v4
       - run: npm ci
-      - run: npm run compile
-      - run: npm run build
-      - run: npm run lint
-      - run: npm run test:coverage:lcov
+      - run: mise run ci --locked
       - uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
@@ -41,6 +38,4 @@ jobs:
           cache: npm
       - uses: jdx/mise-action@v4
       - run: npm ci
-      - run: npm run compile
-      - run: npm run build
-      - run: npm run lint
+      - run: mise run ci --locked

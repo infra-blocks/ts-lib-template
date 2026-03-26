@@ -18,5 +18,5 @@
     "**/.eslintrc.cjs",
     "**/.mocharc.cjs"
   ],
-  "exclude": ["lib/**/*"]
+  "exclude": ["lib/**/*", "coverage/**/*"]
 }
