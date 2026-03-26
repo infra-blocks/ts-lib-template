@@ -4,13 +4,15 @@
 
 ### Repo init
 
-This repository leverages [nvm](https://github.com/nvm-sh/nvm) and users should have it installed in their local environment.
-In addition, it is recommended that users install a [shell hook](https://github.com/nvm-sh/nvm#deeper-shell-integration)
-so that `nvm use` is run upon changing into a project that utilises `nvm`.
+This repository leverages [mise]() and users should have it installed in their local environment. The repository currently
+still uses an `.nvmrc` file to track node versions, but there is a plan to move that to `mise.toml`. In the meantime,
+users should still use `mise` to manage their node version, but it requires to enable the idiomatic file for node. This
+only needs to be run once globally: `mise settings add idiomatic_version_file_enable_tools node`. `mise` now recognizes
+the `.nvmrc` files and everything should work like magic.
 
 Upon checking out the repository, run the following commands:
 ```shell
-nvm install
+mise install
 npm install
 npm run compile
 npm run lint
