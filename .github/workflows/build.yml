@@ -12,15 +12,35 @@ concurrency:
 
 jobs:
   build:
-    uses: infra-blocks/typescript-build-workflow/.github/workflows/workflow.yml@v1
-    with:
-      node-version-file: .nvmrc
-    secrets:
-      codecov-token: ${{ secrets.CODECOV_TOKEN }}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - uses: jdx/mise-action@v4
+      - run: npm ci
+      - run: npm run compile
+      - run: npm run build
+      - run: npm run lint
+      - run: npm run test:coverage:lcov
+      - uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   build-legacy:
-    uses: infra-blocks/typescript-build-workflow/.github/workflows/workflow.yml@v1
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         node-version: [22]
-    with:
-      node-version: ${{ matrix.node-version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - uses: jdx/mise-action@v4
+      - run: npm ci
+      - run: npm run compile
+      - run: npm run build
+      - run: npm run lint
