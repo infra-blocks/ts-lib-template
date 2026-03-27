@@ -1,0 +1,5 @@
+[tools]
+danger-js = "13.0.7"
+
+[tasks.pr-checks]
+run = "danger ci -d $MISE_CONFIG_ROOT/dangerfile.pr-checks.js"

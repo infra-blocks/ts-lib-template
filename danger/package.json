@@ -1,0 +1,12 @@
+{
+  "name": "@infra-blocks/lib-template-danger",
+  "version": "0.0.0",
+  "description": "Contains dangerfiles relating to the project.",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "devDependencies": {
+    "danger": "^13.0.7",
+    "typescript": "^6.0.2"
+  }
+}
