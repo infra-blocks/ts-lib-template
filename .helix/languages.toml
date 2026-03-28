@@ -1,10 +1,10 @@
 [[language]]
 name = "typescript"
-formatter = { command = "biome", args = ["format", "--stdin-file-path=%{buffer_name}"] }
+formatter = { command = "biome", args = ["check", "--write", "--stdin-file-path=%{buffer_name}"] }
 auto-format = true
 language-servers = [ "typescript-language-server", "biome-lsp-proxy" ]
 
 [[language]]
 name = "json"
-formatter = { command = "biome", args = ["format", "--stdin-file-path=%{buffer_name}"] }
+formatter = { command = "biome", args = ["check", "--write", "--stdin-file-path=%{buffer_name}"] }
 auto-format = true
